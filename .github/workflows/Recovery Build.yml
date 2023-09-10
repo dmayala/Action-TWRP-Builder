@@ -70,6 +70,16 @@ jobs:
       uses: rokibhasansagar/slimhub_actions@main
       # That's it! Now use your normal steps
 
+     - name: Cache repo
+        id: cache-repo
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-repo
+        with:
+          path: ~/workspace
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Prepare the environment
       run: |
         sudo apt update
