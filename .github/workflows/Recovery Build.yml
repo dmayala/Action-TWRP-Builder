@@ -72,7 +72,7 @@ jobs:
       env:
           cache-name: cache-repo
       with:
-          path: ~/workspace
+          path: /home/runner/work/Action-TWRP-Builder/Action-TWRP-Builder/workspace
           key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}
