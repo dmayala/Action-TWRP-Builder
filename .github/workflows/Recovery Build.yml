@@ -65,7 +65,11 @@ jobs:
     # You might want to Checkout your repo first, but not mandatory
     - name: Check Out
       uses: actions/checkout@v3
-
+    # Cleanup The Actions Workspace Using Custom Composite Run Actions
+    - name: Cleanup
+      uses: rokibhasansagar/slimhub_actions@main
+    # That's it! Now use your normal steps
+    
     - name: Cache repo
       id: cache-repo
       uses: actions/cache@v3
@@ -145,7 +149,8 @@ jobs:
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       continue-on-error: true
       
-    - uses: actions/cache/save@v3
+    - name: Save Cache
+      uses: actions/cache/save@v3
       if: always()
       with:
         path: /home/runner/work/Action-TWRP-Builder/Action-TWRP-Builder/workspace
