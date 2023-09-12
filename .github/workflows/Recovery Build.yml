@@ -144,7 +144,13 @@ jobs:
         repo sync -j$(nproc --all)
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
       continue-on-error: true
-
+      
+    - uses: actions/cache/save@v3
+      if: always()
+      with:
+        path: /home/runner/work/Action-TWRP-Builder/Action-TWRP-Builder/workspace
+        key: ${{ runner.os }}-build-${{ env.cache-name }}
+          
     - name: Set Swap Space
       uses: pierotofy/set-swap-space@master
       with:
